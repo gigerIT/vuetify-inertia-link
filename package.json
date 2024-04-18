@@ -18,5 +18,9 @@
     "@inertiajs/vue3": "^1.0.0",
     "vue": "^3.0.0",
     "vuetify": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gigerIT/vuetify-inertia-link"
   }
 }
