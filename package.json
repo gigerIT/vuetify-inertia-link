@@ -1,0 +1,22 @@
+{
+  "name": "vuetify-intertia-link",
+  "type": "module",
+  "author": "Manuel Giger <info@gigerit.ch>",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "inertiajs",
+    "vuetify"
+  ],
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@inertiajs/vue3": "^1.0.0",
+    "vue": "^3.0.0",
+    "vuetify": "^3.0.0"
+  }
+}
