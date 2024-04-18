@@ -1,7 +1,7 @@
 # Vuetify Intertia Link
-This is a simple Vue plugin that allows you to use Inertia links with Vuetify components.
+This is a simple Vue plugin that enables the use of Inertia links with Vuetify components.
 
-Adds support of the Intertia route() helper function inside Vuetify's "to" prop.
+It adds support for the Inertia route() helper function within the "to" prop of Vuetify components.
 
 ## Installation
 
