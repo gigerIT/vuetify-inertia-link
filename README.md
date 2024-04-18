@@ -50,3 +50,24 @@ createInertiaApp({
   <v-btn :to="route('dashboard')">Home</v-btn>
 </template>
 ```
+
+or as a menu:
+```html
+<template>
+    <v-list>
+        <v-list-item :to="route('dashboard')">
+            <v-list-item-title>Dashboard</v-list-item-title>
+        </v-list-item>
+        <v-list-item :to="route('user')">
+            <v-list-item-title>User</v-list-item-title>
+        </v-list-item>
+        <v-list-item :to="route('about')">
+            <v-list-item-title>About</v-list-item-title>
+        </v-list-item>
+    </v-list>
+</template>
+```
+
+
+Thank you to https://github.com/robjuz for the original idea and implementation posted on a github issue.
+https://github.com/vuetifyjs/vuetify/issues/11573#issuecomment-1465046711
