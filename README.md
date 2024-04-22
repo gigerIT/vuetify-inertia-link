@@ -1,4 +1,4 @@
-# Vuetify Intertia Link
+# Vuetify Inertia Link
 This is a simple Vue plugin that enables the use of Inertia links with Vuetify components.
 
 It adds support for the Inertia route() helper function within the "to" prop of Vuetify components.
@@ -10,7 +10,7 @@ npm install vuetify-inertia-link
 ```
 
 ```javascript
-import VuetifyInertiaLink from 'vuetify-intertia-link';
+import VuetifyInertiaLink from 'vuetify-inertia-link';
 
 app.use(VuetifyInertiaLink);
 ```
@@ -23,7 +23,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
 import { createVuetify } from 'vuetify'
-import VuetifyInertiaLink from "vuetify-intertia-link";
+import VuetifyInertiaLink from "vuetify-inertia-link";
 
 const vuetify = createVuetify({
     components,
