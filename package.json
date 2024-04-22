@@ -13,7 +13,7 @@
     "vuetify"
   ],
   "license": "MIT",
-  "description": "",
+  "description": "Vue 3 plugin to use Inertiajs links within Vuetify components.",
   "dependencies": {
     "@inertiajs/vue3": "^1.0.0",
     "vue": "^3.0.0",
