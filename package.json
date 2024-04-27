@@ -1,26 +1,31 @@
 {
   "name": "vuetify-inertia-link",
-  "type": "module",
-  "author": "Manuel Giger <info@gigerit.ch>",
-  "version": "1.0.6",
+  "version": "1.0.7",
+  "description": "Vue 3 plugin to use Inertiajs links within Vuetify components.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gigerIT/vuetify-inertia-link.git"
   },
   "keywords": [
     "vue",
     "inertiajs",
-    "vuetify"
+    "vuetify",
+    "vue plugin",
+    "inertia link"
   ],
+  "author": "Manuel Giger <info@gigerit.ch>",
   "license": "MIT",
-  "description": "Vue 3 plugin to use Inertiajs links within Vuetify components.",
-  "dependencies": {
+  "bugs": {
+    "url": "https://github.com/gigerIT/vuetify-inertia-link/issues"
+  },
+  "peerDependencies": {
     "@inertiajs/vue3": "^1.0.0",
     "vue": "^3.0.0",
     "vuetify": "^3.5.14"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gigerIT/vuetify-inertia-link"
   }
 }
