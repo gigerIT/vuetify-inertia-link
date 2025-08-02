@@ -70,32 +70,65 @@ or as a menu:
 
 ## Prefetch Support
 
-This plugin includes built-in support for [Inertia Prefetch](https://inertiajs.com/prefetching) functionality. Pages are automatically prefetched when users hover over or focus on links, improving perceived performance.
+This plugin includes built-in support for [Inertia Prefetch](https://inertiajs.com/prefetching) functionality, following Inertia's exact implementation patterns.
 
 ### Default Behavior
-By default, prefetching is enabled for all links:
+By default, prefetching is **disabled** for all links (matching Inertia's behavior):
 
 ```html
 <template>
-  <!-- This link will prefetch on hover/focus -->
+  <!-- This link will NOT prefetch by default -->
   <v-btn :to="route('dashboard')">Dashboard</v-btn>
 </template>
 ```
 
-### Disabling Prefetch
-You can disable prefetching for specific links using the `prefetch` prop:
+### Enabling Prefetch
+You can enable prefetching for specific links using the `prefetch` prop:
 
 ```html
 <template>
-  <!-- This link will not prefetch -->
-  <v-btn :to="route('heavy-page')" :prefetch="false">Heavy Page</v-btn>
+  <!-- Enable hover prefetching (default mode when prefetch=true) -->
+  <v-btn :to="route('dashboard')" :prefetch="true">Dashboard</v-btn>
+  
+  <!-- Or explicitly specify hover mode -->
+  <v-btn :to="route('dashboard')" prefetch="hover">Dashboard</v-btn>
+</template>
+```
+
+### Prefetch Modes
+The plugin supports multiple prefetch modes, just like Inertia:
+
+```html
+<template>
+  <!-- Prefetch on hover (75ms delay) -->
+  <v-btn :to="route('dashboard')" prefetch="hover">Dashboard</v-btn>
+  
+  <!-- Prefetch on mousedown/click -->
+  <v-btn :to="route('dashboard')" prefetch="click">Dashboard</v-btn>
+  
+  <!-- Prefetch immediately when component mounts -->
+  <v-btn :to="route('dashboard')" prefetch="mount">Dashboard</v-btn>
+  
+  <!-- Multiple modes -->
+  <v-btn :to="route('dashboard')" :prefetch="['hover', 'click']">Dashboard</v-btn>
+</template>
+```
+
+### Caching
+Prefetched responses are cached for 30 seconds by default. You can customize this:
+
+```html
+<template>
+  <!-- Cache for 60 seconds (60000ms) -->
+  <v-btn :to="route('dashboard')" :prefetch="true" :cache-for="60000">Dashboard</v-btn>
 </template>
 ```
 
 ### How It Works
-- Prefetching is triggered when hovering over or focusing on a link
-- A small 100ms delay prevents excessive requests during quick mouse movements
-- Prefetching is automatically cancelled when mouse leaves or focus is lost
+- **Hover mode**: Prefetching is triggered 75ms after hovering over a link (matches Inertia's timing)
+- **Click mode**: Prefetching happens on mousedown, navigation on mouseup for instant perceived performance
+- **Mount mode**: Prefetching happens immediately when the component is rendered
+- Prefetching is automatically cancelled when appropriate (e.g., mouse leaves in hover mode)
 - Only works for links that point to different pages (not the current page)
 
 
