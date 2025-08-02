@@ -68,6 +68,36 @@ or as a menu:
 </template>
 ```
 
+## Prefetch Support
+
+This plugin includes built-in support for [Inertia Prefetch](https://inertiajs.com/prefetching) functionality. Pages are automatically prefetched when users hover over or focus on links, improving perceived performance.
+
+### Default Behavior
+By default, prefetching is enabled for all links:
+
+```html
+<template>
+  <!-- This link will prefetch on hover/focus -->
+  <v-btn :to="route('dashboard')">Dashboard</v-btn>
+</template>
+```
+
+### Disabling Prefetch
+You can disable prefetching for specific links using the `prefetch` prop:
+
+```html
+<template>
+  <!-- This link will not prefetch -->
+  <v-btn :to="route('heavy-page')" :prefetch="false">Heavy Page</v-btn>
+</template>
+```
+
+### How It Works
+- Prefetching is triggered when hovering over or focusing on a link
+- A small 100ms delay prevents excessive requests during quick mouse movements
+- Prefetching is automatically cancelled when mouse leaves or focus is lost
+- Only works for links that point to different pages (not the current page)
+
 
 Thank you to https://github.com/robjuz for the original idea and implementation posted on a github issue.
 https://github.com/vuetifyjs/vuetify/issues/11573#issuecomment-1465046711
