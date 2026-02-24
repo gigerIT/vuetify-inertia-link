@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.3](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.2...v2.1.3) (2026-02-24)
+
+
+### Bug Fixes
+
+* add package-lock.json for dependency management ([180eeba](https://github.com/gigerIT/vuetify-inertia-link/commit/180eebaed682e2d963a287fab6aa3ace51cf4eda))
+
 ## [2.1.2](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.1...v2.1.2) (2026-02-24)
 
 
