@@ -1,9 +1,14 @@
-# Vuetify Inertia Link
-This is a simple Vue plugin that enables the use of Inertia links with Vuetify components.
+# vuetify-inertia-link
 
-It adds support for the Inertia route() helper function within the "to" prop of Vuetify components.
+Use Vuetify components with Inertia navigation.
 
-Vuetify 3 and 4 are supported.
+This plugin registers a `RouterLink` compatibility component so Vuetify's `to` prop works in Inertia apps (without Vue Router).
+
+## Compatibility
+
+- `vue`: `^3.0.0`
+- `@inertiajs/vue3`: `^2.0.0`
+- `vuetify`: `^3.5.14 || ^4.0.0`
 
 ## Installation
 
@@ -11,65 +16,63 @@ Vuetify 3 and 4 are supported.
 npm install vuetify-inertia-link
 ```
 
-```javascript
-import VuetifyInertiaLink from 'vuetify-inertia-link';
+If needed, install peer dependencies:
 
-app.use(VuetifyInertiaLink);
+```bash
+npm install vue @inertiajs/vue3 vuetify
 ```
 
-## Example app.js
-```javascript
-import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+## Setup
 
+Register the plugin once when you bootstrap your Inertia app.
+
+```js
+import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
 import { createVuetify } from 'vuetify'
-import VuetifyInertiaLink from "vuetify-inertia-link";
+import VuetifyInertiaLink from 'vuetify-inertia-link'
 
-const vuetify = createVuetify({
-    components,
-    directives,
-})
+const vuetify = createVuetify()
+
 createInertiaApp({
-    title: (title) => `${title}`,
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
-    setup({ el, App, props, plugin }) {
-        return createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .use(ZiggyVue)
-            .use(vuetify)
-            .use(VuetifyInertiaLink)
-            .mount(el);
-    },
-});
+  setup({ el, App, props, plugin }) {
+    return createApp({ render: () => h(App, props) })
+      .use(plugin)
+      .use(vuetify)
+      .use(VuetifyInertiaLink)
+      .mount(el)
+  },
+})
 ```
-
 
 ## Usage
-```html
+
+Use `to` as you normally would with Vuetify links.
+
+```vue
 <template>
-  <v-btn :to="route('dashboard')">Home</v-btn>
+  <v-btn :to="route('dashboard')">Dashboard</v-btn>
+  <v-btn to="/settings">Settings</v-btn>
 </template>
 ```
 
-or as a menu:
-```html
+```vue
 <template>
-    <v-list>
-        <v-list-item :to="route('dashboard')">
-            <v-list-item-title>Dashboard</v-list-item-title>
-        </v-list-item>
-        <v-list-item :to="route('user')">
-            <v-list-item-title>User</v-list-item-title>
-        </v-list-item>
-        <v-list-item :to="route('about')">
-            <v-list-item-title>About</v-list-item-title>
-        </v-list-item>
-    </v-list>
+  <v-list nav>
+    <v-list-item :to="route('dashboard')" title="Dashboard" />
+    <v-list-item :to="route('users.index')" title="Users" />
+    <v-list-item :to="route('about')" title="About" />
+  </v-list>
 </template>
 ```
 
+## Notes
 
-Thank you to https://github.com/robjuz for the original idea and implementation posted on a github issue.
+- This package focuses on navigation via Vuetify's `to` prop.
+- `route()` in the examples comes from Ziggy in Laravel projects.
+- For non-GET requests (for example logout via POST), use Inertia `Link` or `router.*` methods directly.
+
+## Credits
+
+Original idea from a Vuetify issue comment by @robjuz:
 https://github.com/vuetifyjs/vuetify/issues/11573#issuecomment-1465046711
