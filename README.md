@@ -3,6 +3,8 @@ This is a simple Vue plugin that enables the use of Inertia links with Vuetify c
 
 It adds support for the Inertia route() helper function within the "to" prop of Vuetify components.
 
+Vuetify 3 and 4 are supported.
+
 ## Installation
 
 ```bash
