@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.0.1...v2.1.0) (2026-02-24)
+
+
+### Features
+
+* Vuetify 4 support ([dc8e9b4](https://github.com/gigerIT/vuetify-inertia-link/commit/dc8e9b47090630d84efc40dcf34e1fd77fcab699))
+
 ## [2.0.1](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.0.0...v2.0.1) (2026-02-24)
 
 
