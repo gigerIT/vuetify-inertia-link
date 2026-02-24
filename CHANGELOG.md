@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.5](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.4...v2.1.5) (2026-02-24)
+
+
+### Bug Fixes
+
+* trigger CI npm publish ([c60c117](https://github.com/gigerIT/vuetify-inertia-link/commit/c60c117624aa7fc2b2c5b78593eda235a6f2a632))
+
 ## [2.1.4](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.3...v2.1.4) (2026-02-24)
 
 
