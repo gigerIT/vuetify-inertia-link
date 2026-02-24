@@ -28,10 +28,9 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
 
       - run: npm ci
         if: ${{ steps.release.outputs.release_created }}
 
-      - run: npm publish
+      - run: npm publish --provenance --access public
         if: ${{ steps.release.outputs.release_created }}
