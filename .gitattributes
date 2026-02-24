@@ -1,0 +1,14 @@
+# Exclude repository-only files from git archive exports
+/.github/ export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore
+/.release-please-manifest.json export-ignore
+/release-please-config.json export-ignore
+/CHANGELOG.md export-ignore
+/README.md export-ignore
+
+# Exclude common non-production directories if added later
+/docs/ export-ignore
+/examples/ export-ignore
+/test/ export-ignore
+/tests/ export-ignore
