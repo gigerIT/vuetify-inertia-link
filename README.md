@@ -71,8 +71,3 @@ Use `to` as you normally would with Vuetify links.
 - This package focuses on navigation via Vuetify's `to` prop.
 - `route()` in the examples comes from Ziggy in Laravel projects.
 - For non-GET requests (for example logout via POST), use Inertia `Link` or `router.*` methods directly.
-
-## Credits
-
-Original idea from a Vuetify issue comment by @robjuz:
-https://github.com/vuetifyjs/vuetify/issues/11573#issuecomment-1465046711
