@@ -26,6 +26,6 @@
   "peerDependencies": {
     "@inertiajs/vue3": "^2.0.0",
     "vue": "^3.0.0",
-    "vuetify": "^3.5.14"
+    "vuetify": "^3.5.14||^4.0.0"
   }
 }
