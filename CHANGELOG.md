@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.4](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.3...v2.1.4) (2026-02-24)
+
+
+### Bug Fixes
+
+* switch npm publish to use OIDC trusted publishing ([8e0441f](https://github.com/gigerIT/vuetify-inertia-link/commit/8e0441fa4b2a0d3108dbf856f1f3ef43a668f457))
+
 ## [2.1.3](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.2...v2.1.3) (2026-02-24)
 
 
