@@ -7,7 +7,7 @@ This plugin registers a `RouterLink` compatibility component so Vuetify's `to` p
 ## Compatibility
 
 - `vue`: `^3.0.0`
-- `@inertiajs/vue3`: `^2.0.0`
+- `@inertiajs/vue3`: `^2.0.0 || ^3.0.0`
 - `vuetify`: `^3.5.14 || ^4.0.0`
 
 ## Installation
