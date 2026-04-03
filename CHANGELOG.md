@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.6](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.5...v2.1.6) (2026-04-03)
+
+
+### Bug Fixes
+
+* allow using vuetify-inertia-link with Inertia 3 ([2df083f](https://github.com/gigerIT/vuetify-inertia-link/commit/2df083fcc508e9e23e52f3174ec774a7872df69f))
+
 ## [2.1.5](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.4...v2.1.5) (2026-02-24)
 
 
