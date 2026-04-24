@@ -1,48 +1,48 @@
 # Project Overview
 
-`vuetify-inertia-link` is a small Vue 3 ESM plugin that lets Vuetify components use
-Inertia navigation through Vuetify's `to` prop without installing Vue Router. It
-registers a `RouterLink` compatibility component that maps Vuetify link behavior to
-`@inertiajs/vue3`'s `router.visit()` and current page URL state.
+`vuetify-inertia-link`: small Vue 3 ESM plugin. Lets Vuetify components use
+Inertia navigation via Vuetify `to` prop without Vue Router. Registers
+`RouterLink` compatibility component: maps Vuetify link behavior to
+`@inertiajs/vue3` `router.visit()` + current page URL state.
 
 ## Repository Structure
 
-- `.github/` contains the release-please workflow that publishes package releases.
-- `index.js` is the package entrypoint and contains the full Vue plugin.
-- `README.md` documents installation, setup, usage, compatibility, and notes.
-- `CHANGELOG.md` is maintained by release-please for published release history.
-- `package.json` defines package metadata, scripts, peer dependencies, and ESM mode.
-- `package-lock.json` locks the npm dependency graph for reproducible installs.
-- `release-please-config.json` configures Node release automation for this package.
-- `.release-please-manifest.json` tracks the current release-please package version.
+- `.github/`: release-please workflow; publishes package releases.
+- `index.js`: package entrypoint; full Vue plugin.
+- `README.md`: install, setup, usage, compatibility, notes.
+- `CHANGELOG.md`: release-please managed release history.
+- `package.json`: metadata, scripts, peer dependencies, ESM mode.
+- `package-lock.json`: reproducible npm dependency graph.
+- `release-please-config.json`: Node release automation config.
+- `.release-please-manifest.json`: current release-please package version.
 
 ## Build & Development Commands
 
-Install dependencies from the lockfile:
+Install dependencies from lockfile:
 
 ```sh
 npm ci
 ```
 
-Install the published package in a consuming project:
+Install published package in consuming project:
 
 ```sh
 npm install vuetify-inertia-link
 ```
 
-Install peer dependencies in a consuming project when needed:
+Install peer dependencies in consuming project when needed:
 
 ```sh
 npm install vue @inertiajs/vue3 vuetify
 ```
 
-Run the configured test script:
+Run configured test script:
 
 ```sh
 npm test
 ```
 
-Preview the package contents before publish:
+Preview package contents before publish:
 
 ```sh
 npm pack --dry-run --json
@@ -60,24 +60,24 @@ Release workflow publish step:
 npm publish --provenance --access public
 ```
 
-> TODO: No build script is configured in `package.json`.
-> TODO: No lint script is configured in `package.json`.
-> TODO: No type-check script is configured in `package.json`.
-> TODO: No local run or dev server script is configured in `package.json`.
-> TODO: No debug command is documented or configured.
-> TODO: No manual deploy command beyond CI publish is documented.
+> TODO: No build script in `package.json`.
+> TODO: No lint script in `package.json`.
+> TODO: No type-check script in `package.json`.
+> TODO: No local run/dev server script in `package.json`.
+> TODO: No debug command documented/configured.
+> TODO: No manual deploy command beyond CI publish documented.
 
 ## Code Style & Conventions
 
-- Source is native ESM JavaScript because `package.json` sets `"type": "module"`.
-- The public entrypoint is `index.js`, exported as the package default export.
-- The plugin object is named `VuetifyInertiaLink` and exposes an `install(app)` hook.
-- Existing JavaScript uses double quotes, semicolons, and 4-space indentation.
-- README examples use concise Vue/Inertia setup snippets and single-quoted imports.
-- Releases are managed by release-please with Node release type and `v` tags.
-- Commit messages should be compatible with release-please conventional commits.
-- Preserve the peer dependency ranges unless intentionally changing compatibility.
-> TODO: No formatter, linter, editorconfig, or commit template is present.
+- Native ESM JavaScript; `package.json` sets `"type": "module"`.
+- Public entrypoint: `index.js`, default export.
+- Plugin object: `VuetifyInertiaLink`; exposes `install(app)`.
+- Existing JavaScript: double quotes, semicolons, 4-space indentation.
+- README examples: concise Vue/Inertia setup snippets, single-quoted imports.
+- Releases: release-please, Node release type, `v` tags.
+- Commit messages: release-please compatible conventional commits.
+- Preserve peer dependency ranges unless intentionally changing compatibility.
+> TODO: No formatter, linter, editorconfig, or commit template.
 
 ## Architecture Notes
 
@@ -92,66 +92,64 @@ flowchart LR
     Visit --> Inertia[Inertia navigation]
 ```
 
-The package intentionally has one runtime module. Installing the plugin registers a
-`RouterLink` component for Vuetify to consume. `useLink(props)` reads `props.to.value`
-as the target URL, exposes active state from `usePage().url`, and calls
-`router.visit(href)` for normal clicks. Modified clicks using shift, meta, or ctrl are
-left to browser behavior.
+One runtime module by design. Plugin install registers `RouterLink` for Vuetify.
+`useLink(props)` reads `props.to.value` target URL, exposes active state from
+`usePage().url`, calls `router.visit(href)` on normal clicks. Shift/meta/ctrl
+modified clicks keep browser behavior.
+
+Core rule: keep plugin slim. Prefer importing/delegating to existing Inertia
+behavior when Inertia already provides logic; do not reimplement it here.
 
 ## Testing Strategy
 
-- `package.json` defines `npm test`, but it currently exits with an error placeholder.
-- No unit, integration, browser, or e2e test files are present in this repository.
-- CI currently runs release automation only after pushes to `master`.
-- Release CI installs dependencies and publishes only when release-please creates a
-  release.
-> TODO: Add tests for active state, exact active state, modified clicks, and visit calls.
-> TODO: Decide whether tests should use Vitest, Vue Test Utils, or a consumer fixture.
+- `package.json` defines `npm test`, but it exits with error placeholder.
+- No unit, integration, browser, or e2e test files.
+- CI runs release automation only after pushes to `master`.
+- Release CI installs deps and publishes only when release-please creates release.
+> TODO: Add tests for active state, exact active state, modified clicks, visit calls.
+> TODO: Decide Vitest, Vue Test Utils, or consumer fixture.
 
 ## Security & Compliance
 
-- The package is licensed as MIT in `package.json`.
-- Runtime integrations are peer dependencies: `vue`, `@inertiajs/vue3`, and `vuetify`.
-- Do not commit secrets, npm tokens, or local IDE files; `.gitignore` excludes `.idea`,
-  `node_modules`, and `bun.lockb`.
-- GitHub release workflow grants `contents`, `issues`, `pull-requests`, and `id-token`
-  write permissions for release-please and npm provenance publishing.
-- Treat package publishing as a sensitive operation; verify package contents before
-  release with `npm pack --dry-run --json`.
-> TODO: No dependency scanning, security policy, or vulnerability reporting policy is
-> documented in the repository.
+- License: MIT in `package.json`.
+- Runtime integrations are peer dependencies: `vue`, `@inertiajs/vue3`, `vuetify`.
+- Do not commit secrets, npm tokens, local IDE files; `.gitignore` excludes
+  `.idea`, `node_modules`, `bun.lockb`.
+- GitHub release workflow grants `contents`, `issues`, `pull-requests`,
+  `id-token` write permissions for release-please + npm provenance publishing.
+- Publishing sensitive: verify contents before release with `npm pack --dry-run --json`.
+> TODO: No dependency scanning, security policy, or vulnerability reporting policy.
 
 ## Agent Guardrails
 
 - Do not modify `node_modules/` or generated package tarballs.
-- Do not run `npm publish` manually unless the user explicitly requests it.
-- Do not change release metadata, tags, or changelog entries unless the task is about
-  releases.
-- Do not broaden peer dependency ranges without checking Vuetify, Vue, and Inertia
+- Do not run `npm publish` manually unless user explicitly requests it.
+- Do not change release metadata, tags, or changelog entries unless task is releases.
+- Do not broaden peer dependency ranges without checking Vuetify, Vue, Inertia
   compatibility.
-- Do not replace Inertia navigation with Vue Router; the package exists to avoid that.
-- Keep the implementation small and package-friendly; avoid adding build tooling unless
-  the task requires it.
-- If blocked by a bug or gap in a dependency owned by `gigerit` or `@gigerit`, stop and
-  report the package, version, blocker, expected and actual behavior, repro path, and a
-  suggested upstream fix instead of patching around it here.
-- Prefer root `AGENTS.md` for repo-wide facts; use scoped docs only if a larger module is
-  added later.
+- Do not replace Inertia navigation with Vue Router; package exists to avoid that.
+- Keep implementation small/package-friendly; avoid build tooling unless task needs it.
+- Keep plugin slim: import/delegate to Inertia logic wherever available instead of
+  reinventing it here.
+- If blocked by bug/gap in dependency owned by `gigerit` or `@gigerit`, stop and
+  report package, version, blocker, expected/actual behavior, repro path, suggested
+  upstream fix. Do not patch around it here.
+- Prefer root `AGENTS.md` for repo-wide facts; use scoped docs only if larger module
+  is added later.
 
 ## Extensibility Hooks
 
-- Consumers install the default plugin with `app.use(VuetifyInertiaLink)`.
-- The plugin extension point is Vue's plugin `install(app)` API.
-- Vuetify integration depends on the registered `RouterLink` component name.
-- Navigation behavior flows through `router.visit(href)` from `@inertiajs/vue3`.
-- Active state derives from `usePage().url` and the target `href`.
-> TODO: No environment variables, feature flags, or runtime configuration options are
-> defined in this package.
+- Consumers install default plugin with `app.use(VuetifyInertiaLink)`.
+- Plugin extension point: Vue plugin `install(app)` API.
+- Vuetify integration depends on registered `RouterLink` component name.
+- Navigation flows through `router.visit(href)` from `@inertiajs/vue3`.
+- Active state derives from `usePage().url` and target `href`.
+> TODO: No environment variables, feature flags, or runtime configuration options.
 
 ## Further Reading
 
-- `README.md` for installation, setup, usage examples, and compatibility.
-- `CHANGELOG.md` for release history.
-- `.github/workflows/release.yml` for release and npm publish automation.
-- `release-please-config.json` for release-please behavior.
-- `package.json` for package metadata, scripts, and peer dependency ranges.
+- `README.md`: installation, setup, usage examples, compatibility.
+- `CHANGELOG.md`: release history.
+- `.github/workflows/release.yml`: release + npm publish automation.
+- `release-please-config.json`: release-please behavior.
+- `package.json`: metadata, scripts, peer dependency ranges.
