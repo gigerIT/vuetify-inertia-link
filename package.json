@@ -1,6 +1,6 @@
 {
   "name": "vuetify-inertia-link",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Vue 3 plugin to use Inertiajs links within Vuetify components.",
   "main": "index.js",
   "type": "module",

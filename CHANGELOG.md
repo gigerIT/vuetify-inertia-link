@@ -1,5 +1,28 @@
 # Changelog
 
+## [4.0.0](https://github.com/gigerIT/vuetify-inertia-link/compare/v3.0.0...v4.0.0) (2026-04-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* package now targets Inertia v3 only.
+
+### Features
+
+* support Inertia v3 links ([6bab160](https://github.com/gigerIT/vuetify-inertia-link/commit/6bab1609284b9078a190ebc7a0a929a2f0916a3d))
+* Vuetify 4 support ([dc8e9b4](https://github.com/gigerIT/vuetify-inertia-link/commit/dc8e9b47090630d84efc40dcf34e1fd77fcab699))
+
+
+### Bug Fixes
+
+* add package-lock.json for dependency management ([180eeba](https://github.com/gigerIT/vuetify-inertia-link/commit/180eebaed682e2d963a287fab6aa3ace51cf4eda))
+* allow using vuetify-inertia-link with Inertia 3 ([2df083f](https://github.com/gigerIT/vuetify-inertia-link/commit/2df083fcc508e9e23e52f3174ec774a7872df69f))
+* switch npm publish to use OIDC trusted publishing ([8e0441f](https://github.com/gigerIT/vuetify-inertia-link/commit/8e0441fa4b2a0d3108dbf856f1f3ef43a668f457))
+* trigger CI npm publish ([c60c117](https://github.com/gigerIT/vuetify-inertia-link/commit/c60c117624aa7fc2b2c5b78593eda235a6f2a632))
+* trigger new CI for npm publish ([1fb9a18](https://github.com/gigerIT/vuetify-inertia-link/commit/1fb9a18ec239795f408644b2a12f91820a402a08))
+* update README for vuetify-inertia-link ([c921f54](https://github.com/gigerIT/vuetify-inertia-link/commit/c921f546a08a40b94422e96b5b4d0cda4094f64e))
+* update release configuration to include component and version in tags ([5f89bc7](https://github.com/gigerIT/vuetify-inertia-link/commit/5f89bc75568c739d23d884045faf6d4cad0918a4))
+
 ## [2.1.6](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.5...v2.1.6) (2026-04-03)
 
 
