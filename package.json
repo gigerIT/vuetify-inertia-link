@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "check": "npm test",
     "test": "vitest run --environment jsdom"
   },
   "repository": {
