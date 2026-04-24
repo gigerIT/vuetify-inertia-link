@@ -32,5 +32,8 @@ jobs:
       - run: npm ci
         if: ${{ steps.release.outputs.release_created }}
 
+      - run: npm run check
+        if: ${{ steps.release.outputs.release_created }}
+
       - run: npm publish --provenance --access public
         if: ${{ steps.release.outputs.release_created }}
