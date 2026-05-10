@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/gigerIT/vuetify-inertia-link/compare/v3.0.0...v3.1.0) (2026-05-10)
+
+
+### Features
+
+* add TypeScript definitions for VuetifyInertiaLink plugin ([fa4dd24](https://github.com/gigerIT/vuetify-inertia-link/commit/fa4dd2420245a1da6558ad9b71c354129aabed39))
+
 ## [3.0.0](https://github.com/gigerIT/vuetify-inertia-link/compare/v2.1.5...v3.0.0) (2026-04-24)
 
 
