@@ -3,6 +3,7 @@
   "version": "3.0.0",
   "description": "Vue 3 plugin to use Inertiajs links within Vuetify components.",
   "main": "index.js",
+  "types": "./index.d.ts",
   "type": "module",
   "scripts": {
     "check": "npm test",
@@ -38,6 +39,7 @@
   },
   "files": [
     "index.js",
+    "index.d.ts",
     "CHANGELOG.md"
   ],
   "dependencies": {
