@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/gigerIT/vuetify-inertia-link/compare/v3.1.0...v3.2.0) (2026-10-03)
+
+
+### Features
+
+* support Inertia 3.8 visit options ([21e712f](https://github.com/gigerIT/vuetify-inertia-link/commit/21e712f9c441eb29765926282723dcc00122e599))
+
 ## [3.1.0](https://github.com/gigerIT/vuetify-inertia-link/compare/v3.0.0...v3.1.0) (2026-05-10)
 
 
