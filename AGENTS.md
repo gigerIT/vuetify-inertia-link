@@ -103,6 +103,8 @@ delegates URL/method/query/intercept details to public `@inertiajs/core` helpers
 derives active state from `usePage().url`; and calls `router.visit()` or
 `router.prefetch()` from `@inertiajs/vue3`.
 
+- Import stateful Inertia APIs (`router`, `config`, `usePage`) from `@inertiajs/vue3`
+  to share the consuming app's adapter state; use `@inertiajs/core` for stateless helpers.
 - For non-GET descriptors, expose safe browser `href="#"` to keep Vuetify-rendered
   anchors focusable while using the real mutation URL only for internal Inertia visits.
 - For click prefetch, call `router.prefetch()` and defer `router.visit()` by a
@@ -117,21 +119,25 @@ behavior when Inertia already provides logic; do not reimplement it here.
 
 - `npm test` runs Vitest with jsdom via `vitest run --environment jsdom`.
 - `tests/index.test.js` mounts a tiny Vue app wrapper so `RouterLink.useLink()` runs
-  inside component setup and lifecycle hooks.
-- Tests cover registration, active/exact state, GET query merging, modified clicks,
-  non-GET safe href behavior, Wayfinder and instant visits, mutable prefetch headers,
-  and click-prefetch visit deferral.
+  inside component setup and lifecycle hooks, with mocked router calls for option
+  forwarding and the `useLink()` contract.
+- `tests/integration.test.js` mounts real Vuetify components inside an Inertia app
+  with a controlled HTTP client. Use it to verify navigation and request lifecycles.
+- When adding visit options, test combinations with prefetch against the real router:
+  request reuse and failure rollback depend on Inertia's cache matching and callbacks,
+  which mocked forwarding checks cannot verify.
+- `vitest.config.js` inlines Vuetify so Vitest processes its CSS imports.
 - CI runs release automation only after pushes to `master`.
 - Release CI installs deps and publishes only when release-please creates release.
-> TODO: Add a consumer fixture or e2e tests if Vuetify changes its `RouterLink`
-> integration contract.
 
 ## Security & Compliance
 
 - License: MIT in `package.json`.
 - Runtime integrations are peer dependencies: `vue`, `@inertiajs/vue3`, `vuetify`.
 - `@inertiajs/core` is a direct runtime dependency because the plugin imports public
-  Inertia v3 helper functions; keep it aligned with `@inertiajs/vue3`.
+  Inertia v3 helper functions. Keep its version floor and the `@inertiajs/vue3` peer
+  floor sufficient for required fixes: the adapter pins its own core, so upgrading
+  only the direct dependency can leave router behavior on an older release.
 - Do not commit secrets, npm tokens, local IDE files; `.gitignore` excludes
   `.idea`, `node_modules`, `bun.lockb`.
 - GitHub release workflow grants `contents`, `issues`, `pull-requests`,

@@ -83,7 +83,7 @@ function clickEvent(overrides = {}) {
         altKey: false,
         button: 0,
         ctrlKey: false,
-        currentTarget: { tagName: 'A' },
+        currentTarget: document.createElement('a'),
         defaultPrevented: false,
         metaKey: false,
         preventDefault: vi.fn(),
@@ -139,6 +139,77 @@ describe('VuetifyInertiaLink', () => {
         expect(router.visit).not.toHaveBeenCalled();
 
         scope.stop();
+    });
+
+    it.each(['_parent', '_top', 'reports'])('leaves target="%s" to the browser', target => {
+        const { link, scope } = createUseLinkResult('/reports');
+        const anchor = document.createElement('a');
+        anchor.target = target;
+        const event = clickEvent({ currentTarget: anchor });
+
+        link.navigate(event);
+
+        expect(event.preventDefault).not.toHaveBeenCalled();
+        expect(router.visit).not.toHaveBeenCalled();
+
+        scope.stop();
+    });
+
+    it('preserves callback return values and tracks overlapping visits until both finish', async () => {
+        const onBefore = vi.fn(() => false);
+        const onHttpException = vi.fn(() => false);
+        const onNetworkError = vi.fn(() => false);
+        const onSuccess = vi.fn(() => Promise.resolve());
+        const onError = vi.fn(() => Promise.resolve());
+        const onFinish = vi.fn();
+        const { link, scope } = createUseLinkResult({
+            href: '/posts/1/like',
+            method: 'post',
+            onBefore,
+            onHttpException,
+            onNetworkError,
+            onSuccess,
+            onError,
+            onFinish,
+        });
+
+        link.navigate(clickEvent());
+        const [, options] = router.visit.mock.calls[0];
+
+        expect(options.onBefore({})).toBe(false);
+        expect(link.isLoading.value).toBe(false);
+        expect(options.onHttpException({ status: 500 })).toBe(false);
+        expect(options.onNetworkError(new Error('offline'))).toBe(false);
+        await expect(options.onSuccess({})).resolves.toBeUndefined();
+        await expect(options.onError({})).resolves.toBeUndefined();
+
+        options.onStart({});
+        options.onStart({});
+        options.onFinish({});
+        expect(link.isLoading.value).toBe(true);
+        options.onFinish({});
+        expect(link.isLoading.value).toBe(false);
+        expect(onFinish).toHaveBeenCalledTimes(2);
+
+        scope.stop();
+    });
+
+    it.each([
+        { href: '/reports', prefetch: 'click' },
+        { href: { url: '/reports', method: 'get' }, method: 'post' },
+    ])('rejects optimistic GET descriptors before starting a request: %j', descriptor => {
+        const optimistic = vi.fn();
+        const { link, scope } = createUseLinkResult({ ...descriptor, optimistic });
+
+        try {
+            expect(() => link.navigate(clickEvent())).toThrow('Optimistic links require a non-GET method');
+            expect(router.prefetch).not.toHaveBeenCalled();
+            expect(router.visit).not.toHaveBeenCalled();
+            expect(optimistic).not.toHaveBeenCalled();
+            expect(link.isLoading.value).toBe(false);
+        } finally {
+            scope.stop();
+        }
     });
 
     it('supports descriptors with non-GET methods and visit options', () => {
@@ -341,6 +412,40 @@ describe('VuetifyInertiaLink', () => {
         await Promise.resolve();
 
         expect(router.visit).toHaveBeenCalledOnce();
+
+        scope.stop();
+    });
+
+    it('shares request controls with prefetches and respects global cache defaults', async () => {
+        config.get.mockReturnValueOnce('2m');
+        const { link, scope } = createUseLinkResult({
+            href: '/reports',
+            prefetch: ['mount', 'click'],
+            preserveErrors: true,
+            reset: ['reports'],
+            fresh: true,
+            invalidateCacheTags: ['reports'],
+            showProgress: false,
+        });
+
+        const [, prefetchOptions, cacheOptions] = router.prefetch.mock.calls[0];
+        expect(cacheOptions.cacheFor).toBe('2m');
+        expect(prefetchOptions).toEqual(expect.objectContaining({
+            preserveErrors: true,
+            reset: ['reports'],
+            fresh: true,
+            invalidateCacheTags: ['reports'],
+        }));
+        expect(prefetchOptions).not.toHaveProperty('optimistic');
+        expect(prefetchOptions).not.toHaveProperty('showProgress');
+
+        link.navigate(clickEvent());
+        await Promise.resolve();
+
+        expect(router.visit).toHaveBeenCalledWith('/reports', expect.objectContaining({
+            invalidateCacheTags: ['reports'],
+            showProgress: false,
+        }));
 
         scope.stop();
     });

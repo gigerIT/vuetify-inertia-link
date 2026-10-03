@@ -26,12 +26,12 @@
     "url": "https://github.com/gigerIT/vuetify-inertia-link/issues"
   },
   "peerDependencies": {
-    "@inertiajs/vue3": "^3.0.0",
+    "@inertiajs/vue3": "^3.8.0",
     "vue": "^3.0.0",
     "vuetify": "^3.5.14 || ^4.0.0"
   },
   "devDependencies": {
-    "@inertiajs/vue3": "^3.0.3",
+    "@inertiajs/vue3": "^3.8.0",
     "jsdom": "^27.0.0",
     "vitest": "^4.0.0",
     "vue": "^3.0.0",
@@ -43,6 +43,6 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@inertiajs/core": "^3.0.0"
+    "@inertiajs/core": "^3.8.0"
   }
 }

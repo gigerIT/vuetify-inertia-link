@@ -71,10 +71,6 @@ function normalizePrefetchModes(prefetch) {
     return [prefetch];
 }
 
-function shouldHandleClick(event) {
-    return shouldIntercept(event) && event.currentTarget?.target !== '_blank';
-}
-
 function getConfigValue(key, fallback) {
     if (typeof config?.get !== 'function') {
         return fallback;
@@ -104,6 +100,12 @@ function isUrlActive(currentUrl, href, exact) {
 }
 
 function createLinkOptions(link, method, data, replace) {
+    // Inertia 3.8 skips rollback when consuming a failed GET prefetch.
+    // Other links can populate that cache, so disabling local prefetch is insufficient.
+    if (method === 'get' && link.optimistic) {
+        throw new Error('Optimistic links require a non-GET method to avoid consuming prefetched requests.');
+    }
+
     return {
         data,
         method,
@@ -111,11 +113,18 @@ function createLinkOptions(link, method, data, replace) {
         preserveScroll: link.preserveScroll ?? false,
         preserveState: link.preserveState ?? method !== 'get',
         preserveUrl: link.preserveUrl ?? false,
+        preserveErrors: link.preserveErrors ?? false,
         only: link.only ?? emptyArray,
         except: link.except ?? emptyArray,
+        reset: link.reset ?? emptyArray,
+        fresh: link.fresh ?? false,
+        // Cache matching compares these tags; only a successful visit invalidates them.
+        invalidateCacheTags: link.invalidateCacheTags ?? emptyArray,
         headers: link.headers ?? {},
+        errorBag: link.errorBag ?? '',
+        forceFormData: link.forceFormData ?? false,
         queryStringArrayFormat: link.queryStringArrayFormat ?? 'brackets',
-        async: link.async ?? false,
+        async: link.async,
         component: link.component ?? (link.instant && isUrlMethodPair(link.href) ? resolveUrlMethodPairComponent(link.href) : null),
         pageProps: link.pageProps ?? null,
     };
@@ -131,9 +140,12 @@ function cloneVisitOptions(options) {
 function createVisitOptions(link, baseOptions, setLoading) {
     return {
         ...baseOptions,
+        optimistic: link.optimistic,
+        showProgress: link.showProgress,
         viewTransition: link.viewTransition ?? false,
         onCancelToken: link.onCancelToken ?? noop,
         onBefore: link.onBefore ?? noop,
+        onBeforeUpdate: link.onBeforeUpdate ?? noop,
         onStart: visit => {
             setLoading(1);
             link.onStart?.(visit);
@@ -146,6 +158,9 @@ function createVisitOptions(link, baseOptions, setLoading) {
         onCancel: link.onCancel ?? noop,
         onSuccess: link.onSuccess ?? noop,
         onError: link.onError ?? noop,
+        onHttpException: link.onHttpException ?? noop,
+        onNetworkError: link.onNetworkError ?? noop,
+        onFlash: link.onFlash ?? noop,
     };
 }
 
@@ -198,7 +213,7 @@ const VuetifyInertiaLink = {
                 }
 
                 function navigate(event) {
-                    if (!shouldHandleClick(event)) {
+                    if (!shouldIntercept(event)) {
                         return;
                     }
 

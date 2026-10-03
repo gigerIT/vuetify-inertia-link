@@ -1,7 +1,512 @@
 {
     "schema_version": 1,
-    "last_run": null,
-    "last_successful_run": null,
-    "checkpoint": null,
-    "findings": {}
+    "last_run": {
+        "id": "20261003T135801Z",
+        "started_at": "2026-10-03T13:58:01Z",
+        "finished_at": "2026-10-03T14:35:05Z",
+        "mode": "implement",
+        "status": "complete",
+        "scan_complete": true,
+        "summary": "Full v3 baseline through 3.8.0 and pinned docs cf513d8: implemented missing visit options/callbacks, upstream target handling, coherent 3.8.0 floors, consumer docs and real-dependency regression coverage. Deferred DOM hover hooks and absolute active-URL normalization.",
+        "report": "runs/20261003T135801Z.md",
+        "verification": {
+            "status": "passed",
+            "summary": "25 tests passed in the main checkout and each supported Vuetify/Vue minimum fixture; published exports/types, SSR smoke, dependency trees, package dry run and diff checks passed. Rejected the planned 3.5.0 floor after reproducing its prefetch cache mismatch; required the first released upstream fix, 3.8.0."
+        }
+    },
+    "last_successful_run": "20261003T135801Z",
+    "checkpoint": {
+        "captured_at": "2026-10-03T14:00:53Z",
+        "docs": {
+            "repository": "inertiajs/docs",
+            "ref": "main",
+            "revision": "cf513d8ffc80d2f110a5d295b9b8aa051a92c822"
+        },
+        "inertia": {
+            "repository": "inertiajs/inertia",
+            "releases": {
+                "v3.0.0": {
+                    "revision": "85b6f4d5384523838c6c9a2b2012176ebddf9e82",
+                    "notes_sha256": "5f5c399285f71417ff1e0261d1b6585b9bf0265571a908b52e01e389f18691c2"
+                },
+                "v3.0.1": {
+                    "revision": "d393e0adf39d7143f73d18b03c29237d3dde5b4c",
+                    "notes_sha256": "c9764a1c7304e2f6381113adfd68d0d67e3e28688118877b30bec359a8c37f30"
+                },
+                "v3.0.2": {
+                    "revision": "740ae71fd656ff63613e230d9ed75eaa2801fb0e",
+                    "notes_sha256": "e46ef515e7ab1c098c6e0dfd92d69604ddc044ef2d6911ebed3179561494316c"
+                },
+                "v3.0.3": {
+                    "revision": "66241d2e314154b87cabe010748708fa5c7f3a9d",
+                    "notes_sha256": "695d414dc274c0014da77c1ae12c78cf189acc5ac2e4a2e0c2c33a3179fde9ee"
+                },
+                "v3.1.0": {
+                    "revision": "5889c8414649be3648a9d16baf30052a60ea55b0",
+                    "notes_sha256": "beb43afaa91043216563279978e5e41b7f9929aa6c3457d5d232877bea187bb0"
+                },
+                "v3.1.1": {
+                    "revision": "43bdd792be624072d070e2dd830f47bb007340bb",
+                    "notes_sha256": "dd141d29006749ae2632010c43841b6a394c7be87bf59bc65260ccb6ad4a2996"
+                },
+                "v3.2.0": {
+                    "revision": "afff03ad2573ba28aff6124eca954f22b9f4898f",
+                    "notes_sha256": "18ed08a034f32e84f9d56f99573dd886ec1480c9ec9b96c82a4a221e0d5ee082"
+                },
+                "v3.3.0": {
+                    "revision": "fbc8dd2be312ed152013bcb5bf7a5a3efe51a4de",
+                    "notes_sha256": "d174a0307093b9364f02dd558cc7c46309a50385ee9f5823897fd60bdafc437f"
+                },
+                "v3.3.1": {
+                    "revision": "735389a0d819509873e6aa46d0c52dbc7ca6f755",
+                    "notes_sha256": "c98b45b75413ec55c79a6d4c75eabeba6e9c99531f07040f5fc24207a57342fd"
+                },
+                "v3.4.0": {
+                    "revision": "eb3193f337dd261241601fb190121849b828195f",
+                    "notes_sha256": "19db401d3c1ba962cb5cef03973cf45cd80f625f41fd19c6329fd81b9f7a5ee6"
+                },
+                "v3.5.0": {
+                    "revision": "d3a8ce6746dbb80a9d994a3c3dd0dbfa4eed2542",
+                    "notes_sha256": "76bc87941b9aafdff1bcce82a121d6835e2a1fb11138c7c1a00993fae24c01c2"
+                },
+                "v3.6.0": {
+                    "revision": "c897a2db9ee58580c9295d3a4c67e064ecd18884",
+                    "notes_sha256": "e5b46afda29947c4f4dc42b6e4ebcc957ae483e41061963bd1f1056454bdbc68"
+                },
+                "v3.6.1": {
+                    "revision": "2c8121a17d2d4f48f01b80e2ebc75e71966c4ae3",
+                    "notes_sha256": "8dea3250d735fa6fab2bb92d713372dc2fb3ce50add61cf7ccfb1cfc4717d4a1"
+                },
+                "v3.7.0": {
+                    "revision": "721eef6464ac53c84b52da2f2898d048eea1efcb",
+                    "notes_sha256": "7a86e14f2eae700f1eeba5eaff85d06ec326d4816b3de85a4249ea6214383deb"
+                },
+                "v3.7.1": {
+                    "revision": "eb52e98d195b6374da2abd38632bc4526d913885",
+                    "notes_sha256": "127c621b9be672e285d600341e8a5edfa723c9590fe9382160706d16eaa5100b"
+                },
+                "v3.8.0": {
+                    "revision": "0e8cc0c3638036c95ae2fd402b38a84108556079",
+                    "notes_sha256": "42e776207f21ca67d05e8077d43366b4814eeee1261e24ba75aeafef1dba7481"
+                }
+            }
+        },
+        "packages": {
+            "@inertiajs/core": {
+                "ranges": {
+                    "dependencies": "^3.8.0"
+                },
+                "locked": "3.8.0",
+                "reviewed": "3.8.0"
+            },
+            "@inertiajs/vue3": {
+                "ranges": {
+                    "peerDependencies": "^3.8.0",
+                    "devDependencies": "^3.8.0"
+                },
+                "locked": "3.8.0",
+                "reviewed": "3.8.0"
+            },
+            "vue": {
+                "ranges": {
+                    "peerDependencies": "^3.0.0",
+                    "devDependencies": "^3.0.0"
+                },
+                "locked": "3.5.29"
+            },
+            "vuetify": {
+                "ranges": {
+                    "peerDependencies": "^3.5.14 || ^4.0.0",
+                    "devDependencies": "^4.0.0"
+                },
+                "locked": "4.0.0"
+            }
+        },
+        "local": {
+            "head": "c0ffbb10ff07b6e8587383918e57a79ead949120",
+            "files_sha256": {
+                "index.js": "6350b1e7eba14711582e89f23256e623772538c2b33af382dec33060e2addc08",
+                "index.d.ts": "a79ce60e4ecf5083bd01469f1c68b7a7c57731402bdb389b77b26b98ccd22394",
+                "README.md": "bebab41ec89c09daf26bcc12c1e1400f79e78a1d57059953487a09d76a456160",
+                "package.json": "5cad6dfe743ac117f5c8efd15ef1ddedd6105b9428953742fbe0e664c7e53b3b",
+                "package-lock.json": "9d85b90b488ba6c855aa130edc3511f3ac920a70ddf74773f279f878ccb6abf7",
+                "vitest.config.js": "3812721473e5b5f9f2181b7618204706b97633e48b8d017f5f019e5b9ec406c0",
+                "tests/index.test.js": "b6076a121a15335e1a445a01a4b8fab7108c011408663ae4a43de761718e602a",
+                "tests/integration.test.js": "c94e9cfd81cf580f63de71cc62c9a53a20f22f8a838dc0e15f0e5374563dd223"
+            }
+        }
+    },
+    "findings": {
+        "browser-target-interception": {
+            "id": "browser-target-interception",
+            "status": "implemented",
+            "summary": "Browser target interception.",
+            "reason": "delegate entirely to public `shouldIntercept`, verified on rendered VBtn/VListItem anchors. Final minimum is `^3.8.0` for callback/prefetch compatibility below.",
+            "sources": [
+                "https://github.com/inertiajs/inertia/blob/d3a8ce6746dbb80a9d994a3c3dd0dbfa4eed2542/packages/core/src/navigationEvents.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "visit-error-callbacks": {
+            "id": "visit-error-callbacks",
+            "status": "implemented",
+            "summary": "Visit error callbacks.",
+            "reason": "forward on visits, including `false` return values that suppress default handling.",
+            "sources": [
+                "https://github.com/inertiajs/inertia/blob/85b6f4d5384523838c6c9a2b2012176ebddf9e82/packages/core/src/types.ts",
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/vue3/src/link.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "visit-flash-callback": {
+            "id": "visit-flash-callback",
+            "status": "implemented",
+            "summary": "Visit flash callback.",
+            "reason": "pass it directly to the router; leave flash persistence and global events with Inertia.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/data-props/flash-data.mdx",
+                "https://github.com/inertiajs/inertia/blob/85b6f4d5384523838c6c9a2b2012176ebddf9e82/packages/core/src/types.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "before-update-callback": {
+            "id": "before-update-callback",
+            "status": "implemented",
+            "summary": "Before update callback.",
+            "reason": "forward it directly; no additional callback registry.",
+            "sources": [
+                "https://github.com/inertiajs/inertia/blob/85b6f4d5384523838c6c9a2b2012176ebddf9e82/packages/core/src/types.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "optimistic-visits": {
+            "id": "optimistic-visits",
+            "status": "implemented",
+            "summary": "Optimistic visits.",
+            "reason": "forward the callback on visits and let the router choose async/progress defaults when omitted; retain explicit overrides. Verify optimistic application and rollback using the real router.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/the-basics/optimistic-updates.mdx",
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/core/src/router.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "partial-reload-controls": {
+            "id": "partial-reload-controls",
+            "status": "implemented",
+            "summary": "Partial reload controls.",
+            "reason": "forward reset/error preservation and prefetch freshness controls; Inertia owns their semantics. Explicit `only` requests already support refreshing once props.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/data-props/partial-reloads.mdx",
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/data-props/merging-props.mdx",
+                "https://github.com/inertiajs/inertia/blob/85b6f4d5384523838c6c9a2b2012176ebddf9e82/packages/core/src/types.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "request-controls": {
+            "id": "request-controls",
+            "status": "implemented",
+            "summary": "Request controls.",
+            "reason": "forward request shaping to Inertia and leave omitted progress defaults with the router.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/the-basics/manual-visits.mdx",
+                "https://github.com/inertiajs/inertia/blob/85b6f4d5384523838c6c9a2b2012176ebddf9e82/packages/core/src/types.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "cache-tag-invalidation": {
+            "id": "cache-tag-invalidation",
+            "status": "implemented",
+            "summary": "Cache tag invalidation.",
+            "reason": "forward invalidation on actual visits, not speculative prefetches.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/data-props/prefetching.mdx",
+                "https://github.com/inertiajs/inertia/blob/85b6f4d5384523838c6c9a2b2012176ebddf9e82/packages/core/src/types.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "released-dependency-fixes": {
+            "id": "released-dependency-fixes",
+            "status": "implemented",
+            "summary": "Released dependency fixes.",
+            "reason": "both packages are locked to 3.8.0 with coherent `^3.8.0` minimums. Inherit query parser hardening (3.1.0), undefined option handling (3.1.1), instant scroll (3.3.1), transitions (3.5.0/3.7.1), background request handling and instant once props (3.7.0), cancelled prefetch cleanup and stale optimistic response handling (3.8.0). No local core workaround.",
+            "sources": [
+                "https://github.com/inertiajs/inertia/releases"
+            ],
+            "local_evidence": [
+                "package.json",
+                "package-lock.json",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "prefetch-contract": {
+            "id": "prefetch-contract",
+            "status": "already-supported",
+            "summary": "Prefetch contract.",
+            "reason": "preserve these adaptations; real router fixture must demonstrate click-prefetch reuse. Explain GET-only use and click timing in README.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/data-props/prefetching.mdx",
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/vue3/src/link.ts",
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/core/src/router.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "hover-and-mousedown-prefetch": {
+            "id": "hover-and-mousedown-prefetch",
+            "status": "deferred",
+            "summary": "Hover and mousedown prefetch.",
+            "reason": "no reliable DOM hook through `to`. Revisit when Vuetify exposes/binds these hooks or the public integration contract changes. Keep limitation explicit; click prefetch begins on click rather than mousedown.",
+            "sources": [
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/vue3/src/link.ts",
+                "https://github.com/vuetifyjs/vuetify/blob/v3.5.14/packages/vuetify/src/composables/router.tsx",
+                "https://github.com/vuetifyjs/vuetify/blob/v4.0.0/packages/vuetify/src/composables/router.tsx"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "next_action": "Recheck released Vuetify RouterLink.useLink consumers for bound DOM hooks; retain documented mount/click behavior.",
+            "revisit_when": "Vuetify exposes hover/mousedown hooks through this seam, or a new public integration contract is authorized.",
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "wayfinder-instant-visits": {
+            "id": "wayfinder-instant-visits",
+            "status": "already-supported",
+            "summary": "Wayfinder instant visits.",
+            "reason": "no new wrapper or parser. Wayfinder method precedence follows official Link, not the different manual-visit override rule.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/the-basics/instant-visits.mdx",
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/core/src/url.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "view-transitions-and-preservation": {
+            "id": "view-transitions-and-preservation",
+            "status": "already-supported",
+            "summary": "View transitions and preservation.",
+            "reason": "upstream owns animation, history and preservation; no new lifecycle code.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/the-basics/view-transitions.mdx",
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/core/src/router.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "page-url-active-state": {
+            "id": "page-url-active-state",
+            "status": "already-supported",
+            "summary": "Page url active state.",
+            "reason": "for matching URL forms. Preserve current comparison semantics and document that default relative page URLs need relative `to` values for active styling.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/the-basics/routing.mdx",
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/the-basics/links.mdx"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "absolute-active-url-normalization": {
+            "id": "absolute-active-url-normalization",
+            "status": "deferred",
+            "summary": "Absolute active url normalization.",
+            "reason": "automatic cross-origin/SSR normalization needs an origin policy; the server page URL can be customized and relative URLs lack origin during SSR. Document relative URL use now. Revisit with an explicit origin/SSR policy or a public Inertia active-link helper.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/the-basics/routing.mdx",
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/core/src/url.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "next_action": "Retain documented relative URL usage; specify an origin and SSR matching policy before changing active-state semantics.",
+            "revisit_when": "An explicit cross-origin/SSR normalization policy is chosen, or Inertia publishes a suitable active-link helper.",
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "global-defaults-and-events": {
+            "id": "global-defaults-and-events",
+            "status": "already-supported",
+            "summary": "Global defaults and events.",
+            "reason": "configured prefetch lifetime and visit headers verified through the adapter-owned singleton. The excluded mixed-version fixture passed configuration checks before its cache-matching failure.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/installation/client-side-setup.mdx",
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/advanced/events.mdx"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "big-integer-transport": {
+            "id": "big-integer-transport",
+            "status": "already-supported",
+            "summary": "Big integer transport.",
+            "reason": "by delegation when the app installs Inertia 3.8.0. No local serializer or unconditional claim for older adapters; package update picks up current support.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/advanced/big-integers.mdx",
+                "https://github.com/inertiajs/inertia/tree/0e8cc0c3638036c95ae2fd402b38a84108556079"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "public-helper-review": {
+            "id": "public-helper-review",
+            "status": "not-applicable",
+            "summary": "Public helper review.",
+            "reason": "new partial-prop, head/layout, JSON and explicitly internal interceptor exports do not replace this link seam. `isPathOrSubPath` matches dotted prop names, not URLs. `shouldIntercept` adoption is tracked separately.",
+            "sources": [
+                "https://github.com/inertiajs/inertia/blob/0e8cc0c3638036c95ae2fd402b38a84108556079/packages/core/src/index.ts"
+            ],
+            "local_evidence": [
+                "index.js",
+                "README.md",
+                "tests/index.test.js",
+                "tests/integration.test.js"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "client-setup-documentation": {
+            "id": "client-setup-documentation",
+            "status": "implemented",
+            "summary": "Client setup documentation.",
+            "reason": "complete the manual example and mention plugin registration with `withApp` for apps using the Inertia Vite plugin; maintain SSR registration guidance.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/v3/installation/client-side-setup.mdx"
+            ],
+            "local_evidence": [
+                "README.md: Setup",
+                "index.d.ts: unchanged Vue Plugin export"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "application-only-features": {
+            "id": "application-only-features",
+            "status": "not-applicable",
+            "summary": "Application only features.",
+            "reason": "standalone useHttp, Form generics/state/cancellation, Deferred rescue/reloading, WhenVisible/WhenMounted, polling modes, layouts/head, server response APIs, SSR tooling, auth/CSRF policies and other adapters stay with application dependencies. Shared router effects were reviewed separately above.",
+            "sources": [
+                "https://github.com/inertiajs/docs/blob/cf513d8ffc80d2f110a5d295b9b8aa051a92c822/docs.json",
+                "https://github.com/inertiajs/inertia/releases"
+            ],
+            "local_evidence": [],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        },
+        "prefetch-error-callback-identity": {
+            "id": "prefetch-error-callback-identity",
+            "status": "implemented",
+            "summary": "Require Inertia 3.8.0 so error callbacks do not invalidate prefetch matching.",
+            "reason": "Real 3.5.0 and mixed 3.8.0/3.5.0 fixtures sent two requests for a click-prefetch. The first released callback-equality fix is 3.8.0. Both core and the Vue adapter now require it; all 25 tests pass at both Vuetify/Vue minimum combinations.",
+            "sources": [
+                "https://github.com/inertiajs/inertia/commit/01a06f7c653f469a94f254e89587d1bddfa913bf",
+                "https://github.com/inertiajs/inertia/releases/tag/v3.8.0"
+            ],
+            "local_evidence": [
+                "package.json: both Inertia constraints ^3.8.0",
+                "package-lock.json",
+                "tests/integration.test.js: reuses click prefetches"
+            ],
+            "first_seen_run": "20261003T135801Z",
+            "last_reviewed_run": "20261003T135801Z"
+        }
+    }
 }
