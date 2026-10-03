@@ -174,6 +174,9 @@ behavior when Inertia already provides logic; do not reimplement it here.
 
 ## Further Reading
 
+- For an Inertia upstream feature/compatibility refresh, use the project skill
+  [inertia-updates](.agents/skills/inertia-updates/SKILL.md). It researches,
+  implements, and records incremental coverage in `.agents/inertia-updates/`.
 - `README.md`: installation, setup, usage examples, compatibility.
 - `CHANGELOG.md`: release history.
 - `.github/workflows/release.yml`: release + npm publish automation.

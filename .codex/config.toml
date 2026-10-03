@@ -1,0 +1,4 @@
+[mcp_servers.inertia_docs]
+url = "https://inertiajs.com/docs/mcp"
+http_headers = { "User-Agent" = "vuetify-inertia-link-docs-check/1.0" }
+enabled_tools = ["search_inertia_js_documentation", "query_docs_filesystem_inertia_js_documentation"]

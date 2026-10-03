@@ -1,0 +1,4 @@
+interface:
+  display_name: "Inertia Updates"
+  short_description: "Review and implement relevant Inertia updates"
+  default_prompt: "Use $inertia-updates to check official Inertia changes since the last completed run, implement relevant compatible updates, and record the results."

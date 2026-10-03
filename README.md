@@ -180,3 +180,9 @@ Vuetify's RouterLink compatibility API does not pass hover events from Vuetify c
 - This package focuses on navigation via Vuetify's `to` prop.
 - `route()` in the examples comes from Ziggy in Laravel projects.
 - The official Inertia `<Link>` component is still the best choice when you need exact DOM-level Inertia link behavior outside a Vuetify component.
+
+## Maintainer workflow
+
+Run `$inertia-updates` in Codex to review official Inertia changes, implement relevant compatible updates, and save an incremental checkpoint. Use `$inertia-updates plan only` for a report without implementation, or `$inertia-updates full review` to revisit the complete relevant surface.
+
+The [project skill](.agents/skills/inertia-updates/SKILL.md) keeps its history in `.agents/inertia-updates/`; the first run establishes the baseline. The official Inertia documentation MCP is configured in `.codex/config.toml`. Start a new Codex session in this trusted project to load it. The skill also supports official documentation and source fallbacks when MCP is unavailable.

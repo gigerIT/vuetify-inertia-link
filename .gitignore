@@ -1,3 +1,5 @@
 /.idea
 node_modules
 bun.lockb
+/.agents/inertia-updates/state.json.lock
+/.agents/inertia-updates/state.json.tmp-*
