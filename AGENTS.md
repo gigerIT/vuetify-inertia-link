@@ -7,7 +7,7 @@ Inertia v3 navigation, prefetching, and current page URL state.
 
 ## Repository Structure
 
-- `.github/`: release-please workflow; publishes package releases.
+- `.github/`: package validation and release-please workflow.
 - `index.js`: package entrypoint; full Vue plugin.
 - `tests/`: Vitest/jsdom coverage for the `RouterLink.useLink()` integration.
 - `README.md`: install, setup, usage, compatibility, notes.
@@ -127,8 +127,9 @@ behavior when Inertia already provides logic; do not reimplement it here.
   request reuse and failure rollback depend on Inertia's cache matching and callbacks,
   which mocked forwarding checks cannot verify.
 - `vitest.config.js` inlines Vuetify so Vitest processes its CSS imports.
-- CI runs release automation only after pushes to `master`.
-- Release CI installs deps and publishes only when release-please creates release.
+- CI validates PRs targeting `master` and every push to `master` before release-please.
+  Keep release creation dependent on successful validation; publishing remains
+  conditional on a newly created release.
 
 ## Security & Compliance
 
@@ -140,8 +141,8 @@ behavior when Inertia already provides logic; do not reimplement it here.
   only the direct dependency can leave router behavior on an older release.
 - Do not commit secrets, npm tokens, local IDE files; `.gitignore` excludes
   `.idea`, `node_modules`, `bun.lockb`.
-- GitHub release workflow grants `contents`, `issues`, `pull-requests`,
-  `id-token` write permissions for release-please + npm provenance publishing.
+- CI validation uses read-only permissions. Confine `contents`, `issues`,
+  `pull-requests`, and `id-token` write permissions to the trusted master release job.
 - Publishing sensitive: verify contents before release with `npm pack --dry-run --json`.
 > TODO: No dependency scanning, security policy, or vulnerability reporting policy.
 

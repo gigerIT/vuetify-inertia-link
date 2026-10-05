@@ -1,20 +1,51 @@
 name: release-please
 
 on:
+  pull_request:
+    branches:
+      - master
   push:
     branches:
       - master
 
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-  id-token: write
+  contents: read
 
 jobs:
-  release-please:
+  validate:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - run: npm ci
+
+      - run: npm run check
+
+  release-please:
+    needs: validate
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+    steps:
+      # release-please reads the live branch rather than this workflow's SHA.
+      - name: Verify validated master is still current
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          release_head=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/master" --jq '.object.sha')
+          if [ "$release_head" != "$GITHUB_SHA" ]; then
+            echo 'Master moved since validation; a newer workflow must handle the release.'
+            exit 1
+          fi
+
       - uses: googleapis/release-please-action@v4
         id: release
         with:
@@ -22,18 +53,15 @@ jobs:
           manifest-file: .release-please-manifest.json
 
       - uses: actions/checkout@v4
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
 
       - uses: actions/setup-node@v6
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
         with:
           node-version: 24
 
       - run: npm ci
-        if: ${{ steps.release.outputs.release_created }}
-
-      - run: npm run check
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
 
       - run: npm publish --provenance --access public
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.release_created == 'true' }}
