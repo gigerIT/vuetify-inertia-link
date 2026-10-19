@@ -1,0 +1,26 @@
+# Keep version updates within the existing manifest ranges.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: tuesday
+      time: '09:00'
+      timezone: Europe/Zurich
+    versioning-strategy: lockfile-only
+    open-pull-requests-limit: 1
+    groups:
+      npm-compatible:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    ignore:
+      - dependency-name: '*'
+        update-types:
+          - version-update:semver-major
+    commit-message:
+      prefix: chore
+      include: scope
