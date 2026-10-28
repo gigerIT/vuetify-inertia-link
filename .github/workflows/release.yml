@@ -49,6 +49,8 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
+          # A PAT lets release PR checks start without manual approval.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
